@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADV Anti-Suicidal Fan Hostel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #262626;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            margin: 15px;
+            padding: 20px;
+            width: 150px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+        }
+
+        .green-border {
+            border-color: green;
+            animation: pulseGreen 2s infinite;
+        }
+
+        .red-border {
+            border-color: red;
+            animation: blinkRed 1s infinite;
+        }
+
+        .room-icon {
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .status-indicator {
+            width: 35px;
+            height: 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 10px auto;
+            background-color: #ddd;
+            outline: 2px solid #333;
+        }
+
+        .green-indicator {
+            background-color: green;
+        }
+
+        .red-indicator {
+            background-color: red;
+        }
+
+        .info {
+            text-align: center;
+            margin: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .section h2 {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 0.9em;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .input-section {
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-section label {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .input-section input {
+            padding: 10px;
+            font-size: 1em;
+            margin-left: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-section input:focus {
+            border-color: #007bff;
+        }
+
+        .input-section button {
+            padding: 10px 15px;
+            font-size: 1.1em;
+            margin-left: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .input-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff1a1a;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0px 5px 20px rgba(255, 0, 0, 0.5);
+            animation: shake 0.5s;
+        }
+
+        .hostel-name {
+            background-color: #ffdd00;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        @keyframes blinkRed {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes pulseGreen {
+            0% { box-shadow: 0 0 5px green; }
+            50% { box-shadow: 0 0 20px green; }
+            100% { box-shadow: 0 0 5px green; }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            100% { transform: translateX(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ADV Anti-Suicidal Fan Hostel</h1>
+    </div>
+
+    <div class="info">
+        <p>Welcome to the ADV Anti-Suicidal Fan Hostel. Each section is monitored with safety measures in place. The color indicators show the status of the rooms:</p>
+        <p><span class="status-indicator green-indicator"></span> Safe | <span class="status-indicator red-indicator"></span> Emergency Alert</p>
+    </div>
+
+    <div class="input-section">
+        <label for="room-number">Enter Room Number: </label>
+        <input type="number" id="room-number" min="1" max="10">
+        <button onclick="changeRoomStatus()">Change Status</button>
+    </div>
+
+    <div class="hostel-name">Hostel - Gargi</div>
+
+    <div class="container">
+        <div class="section green-border" id="room1">
+            <div class="room-icon">🏠</div>
+            <h2>1 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Aarav Sharma, Saanvi Singh</p>
+        </div>
+        <div class="section green-border" id="room2">
+            <div class="room-icon">🏠</div>
+            <h2>2 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Arjun Patel, Ananya Reddy</p>
+        </div>
+        <div class="section green-border" id="room3">
+            <div class="room-icon">🏠</div>
+            <h2>3 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Vivaan Mehta, Diya Gupta</p>
+        </div>
+        <div class="section green-border" id="room4">
+            <div class="room-icon">🏠</div>
+            <h2>4 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Aditya Iyer, Ishita Deshmukh</p>
+        </div>
+        <div class="section green-border" id="room5">
+            <div class="room-icon">🏠</div>
+            <h2>5 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Vihaan Nair, Anika Kulkarni</p>
+        </div>
+        <div class="section green-border" id="room6">
+            <div class="room-icon">🏠</div>
+            <h2>6 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Arnav Joshi, Meera Chatterjee</p>
+        </div>
+        <div class="section green-border" id="room7">
+            <div class="room-icon">🏠</div>
+            <h2>7 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Rohan Verma, Kavya Pillai</p>
+        </div>
+        <div class="section green-border" id="room8">
+            <div class="room-icon">🏠</div>
+            <h2>8 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Dev Patel, Siya Nambiar</p>
+        </div>
+        <div class="section green-border" id="room9">
+            <div class="room-icon">🏠</div>
+            <h2>9 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Kabir Rao, Riya Desai</p>
+        </div>
+        <div class="section green-border" id="room10">
+            <div class="room-icon">🏠</div>
+            <h2>10 Room</h2>
+            <div class="status-indicator green-indicator"></div>
+            <p>Safe</p>
+            <p>Students: Aarush Malhotra, Aditi Banerjee</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">Send Medical Team to Room No </div>
+
+    <script>
+        function changeRoomStatus() {
+            const roomNumber = document.getElementById('room-number').value;
+            if (roomNumber < 1 || roomNumber > 10) {
+                alert('Please enter a valid room number between 1 and 10.');
+                return;
+            }
+
+            const room = document.getElementById(`room${roomNumber}`);
+            if (room) {
+                room.classList.remove('green-border');
+                room.classList.add('red-border');
+                room.querySelector('.status-indicator').classList.remove('green-indicator');
+                room.querySelector('.status-indicator').classList.add('red-indicator');
+                room.querySelector('p').textContent = 'Emergency Alert';
+
+                const notification = document.getElementById('notification');
+                notification.textContent = `Send Medical Team to Room No ${roomNumber}`;
+                notification.style.display = 'block';
+                notification.classList.add('shake');
+
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    room.classList.remove('red-border');
+                    room.classList.add('green-border');
+                    room.querySelector('.status-indicator').classList.remove('red-indicator');
+                    room.querySelector('.status-indicator').classList.add('green-indicator');
+                    room.querySelector('p').textContent = 'Safe';
+                }, 15000);
+            }
+        }
+    </script>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
